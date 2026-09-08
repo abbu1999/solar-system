@@ -29,3 +29,9 @@ jobs:
         
       - name: Run Tests
         run: npm test
+
+      - name: Upload The Test File
+        uses: actions/upload-artifact@v7
+        with:
+          name: mocha-test-result
+          path: test-results.xml
