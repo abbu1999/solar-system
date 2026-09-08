@@ -1,0 +1,26 @@
+name: solar-system CI
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'feature/*'
+      
+jobs:
+  unit-testing:
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Install Node For Application
+        uses: actions/setup-node@v7
+        with:
+          node-version: '18'
+          
+      - name: Checkout The Appliction Codebase
+        uses: actions/checkout@v7
+        
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Run Tests
+        run: npm test
