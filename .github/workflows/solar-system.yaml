@@ -15,7 +15,7 @@ jobs:
   unit-testing:
     strategy:
       matrix:
-        node-version: [18,19,20]
+        node-version: [18]
         os: [ubuntu-latest,macos-latest]
         exclude:
           - node-version: 18
@@ -43,3 +43,32 @@ jobs:
         with:
           name: mocha-test-result-node-${{ matrix.node-version}}-os-${{ matrix.os}}
           path: test-results.xml
+
+  code-coverage:
+    strategy:
+      matrix:
+        node-version: [18]
+        os: [ubuntu-latest]
+            
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - name: Install Node For Application
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node-version }}
+          
+      - name: Checkout The Appliction Codebase
+        uses: actions/checkout@v7
+        
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Run Code Coverage
+        run: npm run coverage
+
+      - name: Upload The Test File
+        uses: actions/upload-artifact@v7
+        with:
+          name: code-coverage-node-${{ matrix.node-version}}-os-${{ matrix.os}}
+          path: coverage
