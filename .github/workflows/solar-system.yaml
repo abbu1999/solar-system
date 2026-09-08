@@ -18,8 +18,8 @@ jobs:
         node-version: [18,19,20]
         os: [ubuntu-latest,macos-latest]
         exclude:
-          - node-version: [18]
-            os: [macos-latest]
+          - node-version: 18
+            os: macos-latest
             
     runs-on: ${{ matrix.os }}
     
