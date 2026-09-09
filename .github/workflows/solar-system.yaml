@@ -34,7 +34,6 @@ jobs:
 
       - name: Store Cache
         uses: actions/cache@v6
-        id: cache
         with:
           path: node_modules
           key: ${{ matrix.os }}-node-${{ matrix.node-version }}-${{ hashFiles('package.lock.json') }} #if anything change happen on package.lock.json file cache will invaild and install fresh packages.
@@ -73,7 +72,6 @@ jobs:
 
       - name: Store Cache
         uses: actions/cache@v6
-        id: cache
         with:
           path: node_modules
           key: ${{ matrix.os }}-node-${{ matrix.node-version }}-${{ hashFiles('package.lock.json') }} #if anything change happen on package.lock.json file cache will invaild and install fresh packages.
