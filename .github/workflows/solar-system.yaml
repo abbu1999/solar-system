@@ -31,6 +31,13 @@ jobs:
           
       - name: Checkout The Appliction Codebase
         uses: actions/checkout@v7
+
+      - name: Store Cache
+        uses: actions/cache@v6
+        id: cache
+        with:
+          path: node_modules
+          key: ${{ matrix.os }}-node-${{ matrix.node-version }}-${{ hashFiles('package.lock.json') }} #if anything change happen on package.lock.json file cache will invaild and install fresh packages.
         
       - name: Install Dependencies
         run: npm install
@@ -63,7 +70,14 @@ jobs:
           
       - name: Checkout The Appliction Codebase
         uses: actions/checkout@v7
-        
+
+      - name: Store Cache
+        uses: actions/cache@v6
+        id: cache
+        with:
+          path: node_modules
+          key: ${{ matrix.os }}-node-${{ matrix.node-version }}-${{ hashFiles('package.lock.json') }} #if anything change happen on package.lock.json file cache will invaild and install fresh packages.
+      
       - name: Install Dependencies
         run: npm install
         
